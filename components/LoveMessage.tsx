@@ -18,6 +18,8 @@ function LoveMessage() {
   }
 
   const disableButton = message.length === 0
+  const disableDecryptButton = encryptedMessage.length === 0
+
   const encryptMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const encryptedMessage = loveMessage.encrypt(message)
@@ -56,7 +58,19 @@ function LoveMessage() {
     <div className={clsx(styles.loveMessage)}>
       {/* input love message */}
       <div>
-        <h4 className={styles.heading}>{inputFormTitle}</h4>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h4 className={styles.heading}>{inputFormTitle}</h4>
+          <button
+            className={styles.reset}
+            onClick={() => {
+              setMessage('')
+              setEncryptedMessage('')
+              setAction('encrypt')
+            }}
+          >
+            Reset
+          </button>
+        </div>
         <form onSubmit={onSubmit} className={styles.loveMessageForm}>
           <textarea
             placeholder={inputPlaceholder}
@@ -70,7 +84,7 @@ function LoveMessage() {
             <button
               type="submit"
               className={clsx(styles.loveMessageButton, { secondary: action === 'decrypt' })}
-              disabled={disableButton}
+              disabled={action === 'encrypt' ? disableButton : disableDecryptButton}
             >
               {action === 'encrypt' ? 'Encrypt' : 'Decrypt'} Love Message
             </button>
