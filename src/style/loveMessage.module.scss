@@ -1,0 +1,47 @@
+.loveMessage {
+  flex: 1;
+  min-height: 55vh;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 1rem 0;
+
+  .noMargin {
+    margin: 0;
+  }
+
+  .heading {
+    margin-bottom: 0.5rem;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .loveMessageForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    textarea,
+    button {
+      margin-bottom: 0;
+    }
+  }
+
+  .loveMessageButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .loveMessageButton {
+    margin-top: 0;
+  }
+
+  @media (min-width: 640px) {
+    .loveMessageButton {
+      flex: 1;
+    }
+  }
+}
